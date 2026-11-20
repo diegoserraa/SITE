@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dois temas deliberados: "Noite" (escuro, padrão) e "Papel" (claro).
+   A casca do site (cabeçalho, rodapé, Home, textos da MyMaq) troca com o
+   botão; as telas do produto dentro da página (mockups) ficam sempre
+   escuras — são "captura de tela do sistema", não casca do site. */
+@layer base {
+  :root {
+    --background: 222 49% 8%;        /* #0B1220 */
+    --foreground: 210 40% 98%;
+    --card: 221 45% 11%;             /* #0F1829 */
+    --card-foreground: 210 40% 98%;
+    --primary: 220 100% 56%;         /* #1F6BFF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 221 41% 15%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 221 41% 15%;
+    --muted-foreground: 215 20% 65%; /* névoa */
+    --accent: 221 41% 17%;
+    --accent-foreground: 210 40% 98%;
+    --border: 220 33% 18%;
+    --input: 220 33% 20%;
+    --ring: 152 82% 39%;             /* verde ligado */
+    --radius: 0.75rem;
+
+    /* tokens de marca (ver tailwind.config.ts) */
+    --noite: 222 49% 8%;
+    --noite-2: 221 45% 11%;
+    --noite-3: 219 40% 15%;
+    --grafite: 228 23% 9%;
+    --nevoa: 215 20% 65%;
+    --papel: 220 20% 96%;
+    --papel-2: 0 0% 100%;   /* destaque de hover do card claro, nunca escurece */
+    --ink: 0 0% 100%;       /* texto "branco" sobre a casca escura */
+    --hairline: 0 0% 100%;  /* traço "branco" translúcido sobre a casca escura */
+
+    color-scheme: dark;
+  }
+
+  :root[data-theme="light"] {
+    /* cinza "papel", nunca branco puro — branco chapado cansa a vista */
+    --background: 220 16% 93%;
+    --foreground: 222 35% 14%;
+    --card: 220 16% 97%;
+    --card-foreground: 222 35% 14%;
+    --primary: 220 100% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 89%;
+    --secondary-foreground: 222 35% 14%;
+    --muted: 220 14% 89%;
+    --muted-foreground: 218 11% 38%;
+    --accent: 220 14% 87%;
+    --accent-foreground: 222 35% 14%;
+    --border: 220 12% 81%;
+    --input: 220 12% 81%;
+    --ring: 152 60% 30%;
+
+    --noite: 220 16% 93%;      /* fundo principal: cinza suave */
+    --noite-2: 220 16% 97%;    /* levemente mais claro, nunca branco puro */
+    --noite-3: 220 14% 89%;
+    --grafite: 222 35% 14%;
+    --nevoa: 218 11% 38%;
+    --papel: 220 16% 97%;
+    --papel-2: 0 0% 100%;      /* destaque de hover do card claro, nunca escurece */
+    --ink: 222 35% 14%;        /* texto "branco" vira tinta escura */
+    --hairline: 222 30% 20%;   /* traço "branco" translúcido vira traço escuro translúcido */
+
+    color-scheme: light;
+  }
+
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
+    font-feature-settings: "ss01", "ss02";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: rgba(31, 107, 255, 0.35); }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible { outline: 2px solid #22c55e; outline-offset: 3px; }
+}
+
+@layer components {
+  /* Archivo em largura expandida: a voz de engenharia da marca */
+  .font-wide { font-family: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, sans-serif; font-stretch: 118%; font-variation-settings: "wdth" 118; }
+  .font-xwide { font-family: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, sans-serif; font-stretch: 125%; font-variation-settings: "wdth" 125; }
+  .eyebrow { @apply font-mono text-[11px] uppercase tracking-[0.18em] text-nevoa; }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /* grão sutil para tirar o "chapado" do fundo */
+  .grain::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* grade técnica */
+  .tech-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* cabo de dados: traço vazado como no logotipo */
+  .cable-draw { stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: cable-draw 1.8s cubic-bezier(.65,.05,.25,1) .15s forwards; }
+  .power-glow { filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.75)) drop-shadow(0 0 28px rgba(34, 197, 94, 0.35)); }
+  .breathe { animation: breathe 3.2s ease-in-out infinite; }
+  .qr-scan { animation: qr-scan 2.2s ease-in-out infinite; }
+  .scan { animation: scan 5s linear infinite; transform-origin: center; }
+  .vision-scan { animation: vision-scan 2.8s ease-in-out infinite; }
+
+  /* revelar ao rolar: o estado de repouso é visível; só elementos abaixo da dobra recebem .is-pending */
+  .reveal { transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.is-pending { opacity: 0; transform: translateY(18px); }
+
+  .link-line { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s ease; }
+  .link-line:hover { background-size: 100% 1px; }
+}
+
+@keyframes cable-draw { to { stroke-dashoffset: 0; } }
+@keyframes breathe { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes scan { to { transform: rotate(360deg); } }
+@keyframes qr-scan { 0%,100% { transform: translateY(0); } 50% { transform: translateY(186px); } }
+@keyframes vision-scan { 0% { transform: translateY(-20px); opacity: 0; } 10%, 90% { opacity: .9; } 100% { transform: translateY(240px); opacity: 0; } }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .cable-draw { stroke-dashoffset: 0; }
+  .reveal.is-pending { opacity: 1; transform: none; }
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ZDM Solutions · Tecnologia que liga a sua operação</title>
+    <meta name="description" content="Software sob medida, automação de processos, monitoramento por IoT, inteligência artificial e visão computacional para empresas da Zona da Mata e de todo o Brasil. Criadora do MyMaq360." />
+    <meta name="keywords" content="ZDM Solutions, MyMaq360, software sob medida, automação industrial, IoT, visão computacional, manutenção industrial, gestão de máquinas, Zona da Mata, Minas Gerais" />
+    <meta name="author" content="ZDM Solutions" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://zdmsolutions.com.br/" />
+
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ZDM Solutions" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://zdmsolutions.com.br/" />
+    <meta property="og:title" content="ZDM Solutions · Tecnologia que liga a sua operação" />
+    <meta property="og:description" content="Software, automação, sensores e inteligência artificial sob medida. Conheça o MyMaq360." />
+    <meta property="og:image" content="https://zdmsolutions.com.br/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ZDM Solutions · Tecnologia que liga a sua operação" />
+    <meta name="twitter:description" content="Software sob medida, automação de processos e monitoramento IoT para empresas que querem dados confiáveis. Conheça o MyMaq360." />
+    <meta name="twitter:image" content="https://zdmsolutions.com.br/og-cover.jpg" />
+
+    <meta name="theme-color" content="#0B1220" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script>
+      // aplica o tema antes da primeira pintura, senão pisca o tema errado
+      // por uma fração de segundo ao carregar (FOUC)
+      (function () {
+        try {
+          var saved = localStorage.getItem("zdm-theme");
+          var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
